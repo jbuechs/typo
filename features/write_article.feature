@@ -17,3 +17,10 @@ Feature: Write Articles
     Then I should see "Foobar"
     When I follow "Foobar"
     Then I should see "Lorem Ipsum"
+
+  Scenario: Successfully add categories
+    Given I am on the new category page
+
+  Scenario: Successfully edit categories
+    Given I am on the new category page
+
