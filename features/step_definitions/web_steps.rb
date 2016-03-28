@@ -279,3 +279,7 @@ end
 Then /^show me the page$/ do
   save_and_open_page
 end
+
+Then /^page should have (.+) message "([^\"]*)"$/ do |type, text|
+  page.has_css?("div.#{type}", :text => text, :visible => true)
+end
