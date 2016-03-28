@@ -25,7 +25,7 @@ describe Admin::CategoriesController do
       assert_template 'new'
     end
 
-    it 'should have empty category' do
+    it 'should create a category with empty attributes' do
       assigns(:category).should_not be_nil
       assert !assigns(:category).valid?
       assigns(:categories).should_not be_nil
