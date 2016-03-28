@@ -51,10 +51,20 @@ describe Admin::CategoriesController do
     end
   end
 
-  it "test_update" do
-    post :edit, :id => Factory(:category).id
-    assert_response :redirect, :action => 'index'
+  describe "test_update" do
+    it "successfully updates with valid params" do
+      post :edit, :id => Factory(:category).id
+      expect(flash[:notice]).to eq("Category was successfully saved.")
+      assert_response :redirect, :action => 'index'
+    end
+
+    it "fails to update with invalid params" do
+      post :edit, { :id => Factory(:category).id, "category"=>{"name"=>"", "keywords"=>"", "permalink"=>"general", "description"=>""}}
+      expect(flash[:error]).to eq("Category could not be saved.")
+      assert_response :redirect, :action => 'new'
+    end
   end
+  
 
   describe "test_destroy with GET" do
     before(:each) do
