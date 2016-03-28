@@ -31,6 +31,18 @@ describe Admin::CategoriesController do
       assigns(:categories).should_not be_nil
     end
 
+    it "successfully creates with valid params" do
+      post :new, { "category"=>{"name"=>"Foobar"} }
+      expect(flash[:notice]).to eq("Category was successfully saved.")
+      assert_response :redirect, :action => 'index'
+    end
+
+    it "fails to create with invalid params" do
+      post :new, { "category"=>{"name"=>""}}
+      expect(flash[:error]).to eq("Category could not be saved.")
+      assert_response :redirect, :action => 'new'
+    end
+
   end
 
   describe "test_edit" do
