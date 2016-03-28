@@ -30,3 +30,15 @@ Feature: Categories
     And I press "Save"
     Then I should be on the new category page
     And I should see "Foobaz"
+    And page should have success message "Category was successfully saved."
+
+  Scenario: Error message with blank update category
+    Given the following category records
+      | name | 
+      | Foobar | 
+    And I am on the edit page for "Foobar"
+    When I fill in "category_name" with ""
+    And I press "Save"
+    Then I should be on the new category page
+    And I should see "Foobar"
+    And page should have error message "Category could not be saved."
