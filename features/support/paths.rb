@@ -20,6 +20,9 @@ module NavigationHelpers
     when /^the new category page$/
       '/admin/categories/new'
 
+    when /^the edit page for "(.*)"$/
+      "/admin/categories/edit/#{Category.find_by_name($1).id}"
+
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

@@ -283,3 +283,9 @@ end
 Then /^page should have (.+) message "([^\"]*)"$/ do |type, text|
   page.has_css?("div.#{type}", :text => text, :visible => true)
 end
+
+Given /^the following (.+) records$/ do |factory, table|
+  table.hashes.each do |hash|
+    Factory(factory, hash)
+  end
+end
