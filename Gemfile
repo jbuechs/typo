@@ -58,3 +58,8 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'capybara'
 end
+
+group :development do
+  gem "better_errors"
+  gem "binding_of_caller"
+end
