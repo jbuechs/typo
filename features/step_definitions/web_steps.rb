@@ -286,3 +286,7 @@ Given /^the following (.+) records$/ do |factory, table|
     Factory(factory, hash)
   end
 end
+
+Then /^I should see "([^"]*)" button/ do |name|
+  should have_button name
+end
