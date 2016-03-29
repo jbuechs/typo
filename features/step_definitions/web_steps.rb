@@ -314,5 +314,5 @@ Then /^I should not see "(.*?)" button$/ do |name|
 end
 
 Given /^I select "(.*?)" from the dropdown$/ do |title|
-  select title, from: "merge"
+  select title, from: "merge_with"
 end
