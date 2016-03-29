@@ -312,3 +312,7 @@ end
 Then /^I should not see "(.*?)" button$/ do |name|
   should have_no_button name
 end
+
+Given /^I select "(.*?)" from the dropdown$/ do |title|
+  select title, from: "merge"
+end

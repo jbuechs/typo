@@ -21,4 +21,11 @@ Feature: Article Merge
 
   Scenario: Merge text of two articles
     Given the following article records
-      | title | author | body | user_id |
+      | title         | author       | body          | user_id |  
+      | Hello, world! | Ada Lovelace | Hello, world! | 2       |
+    And I am logged into the admin panel
+    And I am on the new article page
+    And I fill in "article__body_and_extended_editor" with "Goodbye, waterfalls!"
+    And I select "Hello, world!" from the dropdown
+    And I press "Merge"
+    Then I should see "Goodbye, waterfalls!\nHello,world!"
