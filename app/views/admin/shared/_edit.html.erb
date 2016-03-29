@@ -11,7 +11,6 @@
 	<%= form_tag({action: :merge, :id => @article.id}, {:remote => true, :class => className}) do %>
 		<% options = options_from_collection_for_select(@articles, 'id', 'title') %>
 		<%= select_tag 'merge_with', options %>
-		<%= hidden_field_tag 'article_id', @article.id %>
 		<%= submit_tag("Merge", {:class => 'btn primary'}) %>
 	<% end %>
 <% end %>
