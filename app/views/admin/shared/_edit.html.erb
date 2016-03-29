@@ -4,3 +4,15 @@
   <%= render :partial => "form" %>
 
 <% end %>
+
+<% if current_user.admin? %>
+	<%= form_tag(form_action, :id => "#{form_type}_form", :class => className) do %>
+		<div class="separator">
+			<h4>You can associate the following resources</h4>
+			<h5>Merge Articles</h5>
+			<% options = options_from_collection_for_select(@articles, 'id', 'title') %>
+			<%= select_tag 'merge', options %>
+			<%= submit_tag("Merge", {:class => 'btn primary'}) %>
+		</div>
+	<% end %>
+<% end %>
