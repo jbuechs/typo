@@ -23,8 +23,8 @@ Feature: Categories
 
   Scenario: Update a category
     Given the following category records
-      | name | 
-      | Foobar | 
+      | name   |  
+      | Foobar |  
     And I am on the edit page for "Foobar"
     When I fill in "category_name" with "Foobaz"
     And I press "Save"
@@ -34,8 +34,8 @@ Feature: Categories
 
   Scenario: Error message with blank update category
     Given the following category records
-      | name | 
-      | Foobar | 
+      | name   |  
+      | Foobar |  
     And I am on the edit page for "Foobar"
     When I fill in "category_name" with ""
     And I press "Save"
