@@ -19,8 +19,10 @@ module NavigationHelpers
       '/admin/content/new'
     when /^the new category page$/
       '/admin/categories/new'
+    when /^the article page for "(.*)"$/
+      "#{Article.where(title: $1).first.short_url}"
     when /^the edit article page for "(.*)"$/
-      "admin/content/edit/#{Article.where(title: $1).first.id}"
+      "/admin/content/edit/#{Article.where(title: $1).first.id}"
 
     when /^the edit page for "(.*)"$/
       "/admin/categories/edit/#{Category.find_by_name($1).id}"

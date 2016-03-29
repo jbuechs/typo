@@ -8,12 +8,12 @@ Feature: Article Merge
   	Given the blog is set up
     Given I am logged into the admin panel
     Given the following article records
-      | title         | author       | body                 | user_id |  
-      | Hello, world! | Ada Lovelace | Hello, world!        | 2       |  
-      | Goodbye!      | Admin        | Goodbye, waterfalls! | 1       |  
+      | title         | author       | body                 | user_id | published |  
+      | Hello! | Ada Lovelace | Hello, world!        | 2       | true      |  
+      | Goodbye!      | Admin        | Goodbye, waterfalls! | 1       | true      |  
 
   Scenario: Display Merge Articles Button to Admin on Edit Page
-    Given I am on the edit article page for "Hello, world!"
+    Given I am on the edit article page for "Hello!"
     Then I should see "Merge Articles"
     And I should see "Merge" button
 
@@ -23,7 +23,10 @@ Feature: Article Merge
     And I should not see "Merge" button
 
   Scenario: Merge text of two articles
-    Given I am on the edit article page for "Hello, world!"
+    Given I am on the edit article page for "Hello!"
     And I select "Goodbye!" from the dropdown
     And I press "Merge"
-    Then I should see "Goodbye, waterfalls!\nHello,world!"
+    Then I should be on the edit article page for "Hello!"
+    When I go to the article page for "Hello!"
+    Then I should see "Goodbye, waterfalls!"
+    And I should see "Hello, world!"
