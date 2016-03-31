@@ -43,4 +43,12 @@ Feature: Article Merge
     And I press "Merge"
     Then the "Hello!" article should have 2 comments
 
+  Scenario: Delete the merged article
+  	Given I am on the home page
+  	Then I should see "Goodbye!"
+  	When I go to the edit article page for "Hello!"
+  	And I select "Goodbye!" from the dropdown
+    And I press "Merge"
+    When I go to the homepage
+    Then I should not see "Goodbye!"
 
