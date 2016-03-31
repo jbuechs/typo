@@ -1,4 +1,5 @@
 require 'base64'
+require 'pry'
 
 module Admin; end
 class Admin::ContentController < Admin::BaseController
@@ -118,6 +119,11 @@ class Admin::ContentController < Admin::BaseController
     merge_article = Article.find(params[:merge_with])
     @article.body += merge_article.body
     @article.save
+    merge_article.comments.each do |comment|
+      article_copy = comment.clone
+      article_copy.article_id = @article.id
+      article_copy.save
+    end
     redirect_to :action => 'edit', id: @article.id
   end
 
