@@ -316,3 +316,8 @@ end
 Given /^I select "(.*?)" from the dropdown$/ do |title|
   select title, from: "merge_with"
 end
+
+Given /^the "(.*?)" article should have (\d+) comments*$/ do |title, num|
+  article = Article.where(title: title).first
+  article.comments.count.should == num.to_i
+end

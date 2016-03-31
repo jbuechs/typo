@@ -8,9 +8,13 @@ Feature: Article Merge
   	Given the blog is set up
     Given I am logged into the admin panel
     Given the following article records
-      | title         | author       | body                 | user_id | published |  
-      | Hello! | Ada Lovelace | Hello, world!        | 2       | true      |  
-      | Goodbye!      | Admin        | Goodbye, waterfalls! | 1       | true      |  
+      | title    | author       | body                 | user_id | published |  
+      | Hello!   | Ada Lovelace | Hello, world!        | 2       | true      |  
+      | Goodbye! | Admin        | Goodbye, waterfalls! | 1       | true      |  
+    Given the following comment records
+    	| author          | body              | article_id | published |  
+    	| Ada Lovelace    | Hello, article!   | 3          | true      |  
+    	| Charles Babbage | Goodbye, article. | 4          | true      |  
 
   Scenario: Display Merge Articles Button to Admin on Edit Page
     Given I am on the edit article page for "Hello!"
@@ -30,3 +34,13 @@ Feature: Article Merge
     When I go to the article page for "Hello!"
     Then I should see "Goodbye, waterfalls!"
     And I should see "Hello, world!"
+
+  Scenario: Merge the comments of two articles
+  	Given I am on the article page for "Hello!"
+  	And the "Hello!" article should have 1 comment
+  	When I go to the edit article page for "Hello!"
+  	And I select "Goodbye!" from the dropdown
+    And I press "Merge"
+    Then the "Hello!" article should have 2 comments
+
+
