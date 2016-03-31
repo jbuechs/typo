@@ -124,6 +124,7 @@ class Admin::ContentController < Admin::BaseController
       article_copy.article_id = @article.id
       article_copy.save
     end
+    merge_article.destroy
     redirect_to :action => 'edit', id: @article.id
   end
 
