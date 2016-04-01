@@ -115,15 +115,7 @@ class Admin::ContentController < Admin::BaseController
 
   def merge
     @article = Article.find(params["id"])
-    merge_article = Article.find(params[:merge_with])
-    @article.body += merge_article.body
-    @article.save
-    merge_article.comments.each do |comment|
-      comment_copy = comment.clone
-      comment_copy.article_id = @article.id
-      comment_copy.save
-    end
-    merge_article.destroy
+    @article.merge_with(params[:merge_with])
     redirect_to :action => 'edit', id: @article.id
   end
 
