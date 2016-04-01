@@ -84,13 +84,10 @@ class Article < Content
     Article.transaction do
       merge_article = Article.find(merge_id)
       self.body += merge_article.body
-      self.save
-      merge_article.comments.each do |comment|
-        comment_copy = comment.clone
-        comment_copy.article_id = self.id
-        comment_copy.save
-      end
+      self.comments += merge_article.comments
+      merge_article.comments.reload
       merge_article.destroy
+      self.save
     end
   end
 
